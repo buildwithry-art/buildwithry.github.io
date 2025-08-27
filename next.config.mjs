@@ -2,12 +2,11 @@
 const isProd = process.env.NODE_ENV === 'production'
 
 const nextConfig = {
-  eslint: { ignoreDuringBuilds: true },
-  typescript: { ignoreBuildErrors: true },
-  images: { unoptimized: true },
-  output: 'export',  // 👈 ensures Next.js generates static HTML
-  trailingSlash: true, // 👈 helps with GitHub Pages routing
-  assetPrefix: isProd ? '/<your-repo-name>/' : '', // 👈 only if deploying to project pages
+  output: 'export',              // 👈 required for static GitHub Pages
+  images: { unoptimized: true }, // 👈 fixes next/image
+  trailingSlash: true,           // 👈 prevents 404s on refresh
+  // 👇 only needed if your site is a project repo (username.github.io/my-app)
+  assetPrefix: isProd ? '/<repo-name>/' : '',
 }
 
 export default nextConfig
